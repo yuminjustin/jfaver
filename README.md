@@ -91,7 +91,7 @@
         var test = j.concat(object1, object2,status);
         /*后续将充实为多维的，目前此方法为一维*/
         /*此方法修改传入的两个对象，返回值是新的对象，将object2当中的属性添加到object1当中，不同的属性将直接写入，【有相同的属性】时候操作方式如下：*/
-        /*status合并方式，可选，默认为0*/
+        /*status相同属性的合并方式，可选，默认为0*/
         /*默认，object2的值将会替换到object1*/
         /*1，object2的值不会替换到object1，object1不变*/
         /*2，object2和object1的值都保留，object1的属性名称将变更为xx_o*/
