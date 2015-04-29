@@ -77,7 +77,7 @@
         lowIE: "http://www.lanrentuku.com/img/allimg/1212/5-121204193R5-50.gif"
     }
     loading.prototype.trunOn = function () {
-        styles.show(this.loadBox, this.opt.open)
+        styles.show(this.loadBox,  his.opt.open)
     }
     loading.prototype.trunOff = function () {
         styles.hide(this.loadBox, this.opt.close)
