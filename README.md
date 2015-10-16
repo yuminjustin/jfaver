@@ -1,5 +1,5 @@
 # jfaver
-#我的常用方法集合
+###我的常用方法集合
 把自己常用的一些方法和经验集合起来，本次不提供源码了，只是我自己平时的积累，网上有很多，只不过我是把它们放在了一起，而且后续会持续往里面加内容，不依赖其他类库。（jfaver文件要放在body结束符前，不要放在head中）
 ### [2015-10-16](#13) update 增加了13-15 三个新工具
 ### 2015-4-29 1-12 共12个工具
@@ -21,7 +21,7 @@
 [15](#15)、获取url后面的挂参；<br>
 ### 以下是详细使用方法：
 ### 1
-    异步加载一个js文件
+异步加载一个js文件<br>
           j.require("jfaver.loading.js", function (o) {
              /*第一个参数是需要加载的js文件地址*/
              /*第二个参数是回调函数，o为返回值，是个对象，可选择使用*/
@@ -30,14 +30,14 @@
              /*status表示状态 一般为1*/
          });
 ### 2
-    避免缓存模式的load方法
+避免缓存模式的load方法<br>
          j.load(object, function (o) {
            /*第一个参数是需要绑定load事件的对象*/
           /*第二个参数功能同第一点*/
            /*target表示你所传入的object对象*/
         });
 ### 3
-    预加载图片
+预加载图片<br>
         j.requireIMG(url, function (o) {
             /*此方法跟load方法类似，load也可以做图片预加载，但是第一个参数需要是对象*/
            /*此方法第一个对象是图片url*/
@@ -45,11 +45,11 @@
            /*target表示临时的img对象*/  
         });
 ### 4
-    产生随机数
+产生随机数<br>
         j.randomN();
         /*产生0~1之间的随机浮点数，此方法运用在load方法中，平日的开发中也可能会用到，于是就暴露出来*/
 ### 5
-    判断浏览器
+判断浏览器<br>
         j.browser();
        /*返回值是一个对象，这个对象包含两个值，name和v*/
        /*name：这个值包含两块，这是为以后判断手机浏览器做铺垫
@@ -65,24 +65,24 @@
              其他浏览器的和高级版的IE（10+） 
        */
 ### 6
-    判断设备
+判断设备<br>
         j.divce();
        /*返回值同上*/
       /*name：an（安卓）、ios、wp（windows phone）、bb（blackberry）、other（其他手机）、pc
           v：0、1   0表示移动设备，1表示pc
      */
 ### 7
-    css3动画结束
+css3动画结束<br>
          j.animatend(object, function () {
                /*两个参数 第一个是需要绑定事件的对象，第二个是回调*/
          });
 ### 8
-    css3过渡结束
+css3过渡结束<br>
          j.transitionend(object, function () {
            /*两个参数 第一个是需要绑定事件的对象，第二个是回调*/
         });
 ### 9
-    存储
+存储<br>
          /*sessionStorage*/
          j.storage.setSession(name,value); /*设置*/
          j.storage.getSession(name);/*获取*/
@@ -101,7 +101,7 @@
          j.storage.fixCookie(name,value,day);/*修改*/
          j.storage.delCookie(name);/*删除*/
 ### 10
-    合并两个对象（一维）
+合并两个对象（一维）<br>
         var test = j.concat(object1, object2,status);
         /*后续将充实为多维的，目前此方法为一维*/
         /*此方法修改传入的两个对象，返回值是新的对象，将object2当中的属性添加到object1当中，不同的属性将直接写入，【有相同的属性】时候操作方式如下：*/
@@ -111,14 +111,14 @@
         /*2，object2和object1的值都保留，object1的属性名称将变更为xx_o*/
         /*3，直接删除相同属性*/
 ### 11
-    删除某个数组元素
+删除某个数组元素<br>
         var arr = [1, 2, 3, 8, 5];
          j.arrRemove(arr, 3);
         /*首先它将会去找该数组是否有3这个值，有将直接删除，任务结束
            若无它将会再次运行去删除角标为3的元素，任务结束
            若都没有，任务结束，数组无变化 */
 ### 12
-    继承
+继承<br>
          var afn = function (){
                 this.test =function(i,j){
                    console.log(i+j);
@@ -132,15 +132,15 @@
            */
         }
 ### 13
-    时间戳格式化
+时间戳格式化<br>
         var datetime = j.formatDate(1444880942000);
         结果：2015-10-15 11:49:2
 ### 14
-    对象转成string
+对象转成string<br>
         var data= j.O2S({a:1,b:2});
         结果："{"a":1,"b":2}"
 ### 15
-    获取url后面的挂参
+获取url后面的挂参<br>
         var data = j.getDataFormUrl("https://www.baidu.com/s?ie=UTF-8&tn=93899312_hao_pg&wd=apple")
         结果： {ie: "UTF-8", tn: "93899312_hao_pg", wd: "apple"}  
         填入链接可选，不填直接去拆分当前的location.href
