@@ -91,3 +91,13 @@ var O2S = function(o) {
     }
     return a.join("&");
 }
+
+// -----------获取挂参
+var getParams = function(str){
+    var _search = window.location.search.substr(1),
+        data = {};
+    _search.replace(/([^&]*)=([^&]*)/g, function(a, b, c) {
+        data[b] = c;
+    });
+    return data;
+}
