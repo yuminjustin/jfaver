@@ -1,9 +1,9 @@
 (function() {
-    var X, tar, imgs, Top,   // 差值、监控对象、监控img数组、初始高度（在iframe时）
-        Lazy = function(dom, originTop) { 
+    var X, tar, imgs, Top,   // 差值、监控对象、监控img数组、初始高度（在iframe时，iframe内元素定位是从0开始，会有差值）
+        Lazy = function(dom, originTop) { // 传值：被监控dom，初始高度（选填）
             tar = dom;
-
-            Top = originTop || tar.offsetTop; // iframe高度
+            
+            Top = ( originTop || 0 ) || tar.offsetTop; // 默认是被监控对象高度
 
             run()
             window.addEventListener('scroll', run, false);
