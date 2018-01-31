@@ -101,3 +101,33 @@ var getParams = function(str){
     });
     return data;
 }
+
+// ----------------插入临时样式表
+    var addStyleSheet = function(str) {
+        var head = document.head || document.getElementsByTagName('head')[0];
+        try {
+            style = document.createElement('style');
+            style.type = 'text/css';
+            var textNode = document.createTextNode(str);
+            style.appendChild(textNode);
+            head.appendChild(style);
+        } catch (e) {
+            style = document.createStyleSheet();
+            style.cssText = str;
+        }
+    }
+     
+//   -----------------页面是否滑动到最底部
+    var isBottom = function(fn) {
+        var isTriggered = !1  // 避免重复触发
+        window.addEventListener('scroll', function() {
+            var top = document.body.scrollTop || document.documentElement.scrollTop,
+                max = (document.body.scrollHeight || document.documentElement.clientHeight) - window.innerHeight;
+            if (top >= max) {
+                if (!isTriggered) {
+                    isTriggered = !0;
+                    fn && fn(isTriggered)  // 执行动作 别忘了执行完毕将状态改回来
+                }
+            }
+        }, false)
+    }
