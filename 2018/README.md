@@ -10,6 +10,9 @@
 <li>4.图片反盗链二次加载</<li>
 <li>5.document.currentScript的shim（IE）</<li>
 <li>6.对象转字符串 一维</<li>
+<li>7.获取链接后面的挂参</<li>
+<li>8.插入临时样式表</<li>
+<li>9.页面是否滑动到最底部</<li>
 </ul>
 
 ### jsonp.js<br/>
