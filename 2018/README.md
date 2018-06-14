@@ -40,7 +40,7 @@
 <li>正则搜集</<li>
 </ul>
 
-### pwa.md<br/>
+### pwa_demo<br/>
 <ul>
-<li>PWA简描</<li>
+<li>PWA简描和超简单demo</<li>
 </ul>
