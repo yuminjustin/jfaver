@@ -4,5 +4,5 @@
 <br/> <br/><br/> <br/>
 一个示例的运行流程剖析：<br/>
 <p align="center">
-    <img src="https://github.com/yuminjustin/jfaver/blob/master/2018/aynsc/49B639CE-A4A0-4143-ABD8-CB8BF364CCED.jpeg">
+    <img src="https://github.com/yuminjustin/jfaver/blob/master/2018/aynsc/syt.jpeg">
 </p>

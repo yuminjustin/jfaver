@@ -44,3 +44,9 @@
 <ul>
 <li>PWA简描和超简单demo</<li>
 </ul>
+
+### async<br/>
+<ul>
+<li>一篇容易理解async/await的文章</<li>
+</ul>
+
