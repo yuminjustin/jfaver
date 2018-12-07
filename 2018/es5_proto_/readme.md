@@ -17,3 +17,6 @@
       Parent.prototype.constructor === Parent   // true
       
       Parent.prototype.__proto__ === parent1.__proto__   //false
+
+
+SomeOne.prototype = new Parent(); 这个操作把父类的实例给了SomeOne的原型，所以通过这个我们就可以找到父级的name，这就是原型链，一层一层的，像一个链条；
