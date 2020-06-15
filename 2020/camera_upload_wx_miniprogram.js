@@ -26,11 +26,13 @@ takePhoto = () => {
 /* 上传处理 mmUpload*/
 mmUpload = (file) => {
         let _this = this,
-            context = wx.createCanvasContext('micro');
+            context = wx.createCanvasContext('micro'),
+            w = screen.screenWidth,  // wx.getMenuButtonBoundingClientRect() 取值来的
+            h = 150;  //高度自定义
         this.setData({   // 让页面显示已拍照的图片并显示canvas
             xsz_img: file   
         });
-        context.drawImage(file, 0, 0, screen.screenWidth, 150)  //填充canvas  高度自定义
+        context.drawImage(file, 0, 0, w, h)  //填充canvas  
         context.draw(true);  //绘制
         setTimeout(() => {
             wx.showLoading({
@@ -43,6 +45,8 @@ mmUpload = (file) => {
             wx.canvasToTempFilePath({  // 变成图片
                 quality: 0.8, //图片质量
                 canvasId: 'micro',
+                destWidth: w,
+                destHeight: h,
                 success(res) {
                     wx.hideLoading();
                     networks.uploadFile(res.tempFilePath, (res) => {
