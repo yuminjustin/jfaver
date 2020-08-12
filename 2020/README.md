@@ -3,7 +3,6 @@
 
          camera_upload_H5.js  h5版本 
          camera_upload_wx_miniprogram.js  微信小程序有拍照控件
-         camera_upload_wx_miniprogram2.md  微信小程序没有有拍照控件
          
 </li>
 </ul>
