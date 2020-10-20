@@ -5,4 +5,5 @@
          camera_upload_wx_miniprogram.js  微信小程序有拍照控件
          
 </li>
+<li>2.canvas彩色波浪</li>
 </ul>
