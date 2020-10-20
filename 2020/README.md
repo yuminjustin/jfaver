@@ -6,4 +6,5 @@
          
 </li>
 <li>2.canvas彩色波浪</li>
+<li>3.css3彩色文字</li>
 </ul>
