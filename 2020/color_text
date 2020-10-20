@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
+            h1 {
+                font-size: 110px;
+                margin-bottom: 30px;
+                background-image: -webkit-linear-gradient(left, #3b97ef, #E3A7F1 25%, #e9fb82 50%, #3bef86 75%, #3b97ef);
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+                -webkit-background-size: 200% 100%;
+                -webkit-animation: ukfont 4s infinite linear;
+            }
+        }
+
+        @-webkit-keyframes ukfont {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: -100% 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Colorful text</h1>
+</body>
+
+</html>
