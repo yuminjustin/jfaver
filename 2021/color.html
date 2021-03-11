@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主色调</title>
+    <script>
+        const pick_main_color = (src, fn) => {
+            let image = new Image(),
+                canvas = document.createElement('canvas'),
+                getRgba = (_c, img) => {
+                    let imgWidth = img.width,
+                        imgHeight = img.height,
+                        context = _c.getContext('2d');
+                    //给canvas赋宽高
+                    _c.width = imgWidth;
+                    _c.height = imgHeight;
+                    // 将图片按像素写入画布
+                    context.drawImage(img, 0, 0, imgWidth, imgHeight)
+                    //读取图片像素信息
+                    let imgdatas = context.getImageData(0, 0, imgWidth, imgHeight);
+                    //获取rgba数据
+                    let imgdata = imgdatas.data;
+                    let newJson = {},
+                        length = imgdata.length;
+                    for (let i = 0; i < length; i++) {
+                        if (i % 4 === 0) { // 每四个元素为一个像素数据 r,g,b,alpha
+                            var alpha = Math.round(imgdata[i + 3] / 255 * 100) / 100; // alpha 值
+                            var rgba = imgdata[i] + ',' + imgdata[i + 1] + ',' + imgdata[i + 2] + ',' + alpha;
+                            if (!newJson[rgba]) {
+                                newJson[rgba] = 1
+                            } else {
+                                newJson[rgba]++
+                            }
+                        }
+                    }
+                    //取出现最多的rgba
+                    let maxNum = 0,
+                        maxVal = "";
+                    for (let key in newJson) {
+                        if (newJson[key] > maxNum) {
+                            maxNum = newJson[key];
+                            maxVal = key;
+                        }
+                    }
+                    //console.log('rgba:', maxVal + "; 次数:" + maxNum)
+                    return maxVal
+                },
+                getHex = (...value) => {
+                    r = value[0].toString(16);
+                    g = value[1].toString(16);
+                    b = value[2].toString(16);
+                    // 补0
+                    r.length == 1 ? r = '0' + r : '';
+                    g.length == 1 ? g = '0' + g : '';
+                    b.length == 1 ? b = '0' + b : '';
+                    let hex = r + g + b;
+                    // 简化处理,如 FFEEDD 可以写为 FED
+                    if (r.slice(0, 1) == r.slice(1, 1) && g.slice(0, 1) == g.slice(1, 1) && b.slice(0, 1) == b.slice(1, 1)) {
+                        hex = r.slice(0, 1) + g.slice(0, 1) + b.slice(0, 1);
+                    }
+                    return hex;
+                }
+
+            image.src = src;
+            image.crossOrigin = "anonymous";
+            image.onload = () => {
+                let maxVal = getRgba(canvas, image)
+                let splitArr = maxVal.split(",")
+                let hex = getHex(Number(splitArr[0]), Number(splitArr[1]), Number(splitArr[2]))
+                fn && fn(hex);
+            }
+        }
+    </script>
+    <script>
+        let url = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201305%2F30%2F220025pxfkhykvkgkvuktq.jpg&refer=http%3A%2F%2Fattach.bbs.miui.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1618043686&t=d41c301c6b4a7e706ea3a2ce951bd7b0";
+        pick_main_color(url, (hex) => {
+            console.log('主调颜色：#' + hex);
+            document.body.style.backgroundColor = "#" + hex;
+        })
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
