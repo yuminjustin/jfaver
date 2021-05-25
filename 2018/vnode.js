@@ -25,6 +25,11 @@
                         node.setAttribute(key, value);
                     }
                     break;
+                case 'method':
+                    for (var i in value) {
+                        node.addEventListener(i, value[i], false);
+                    }
+                    break;
                 default:
                     node.setAttribute(key, value);
                     break;
