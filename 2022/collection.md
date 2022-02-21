@@ -100,7 +100,10 @@
       return ans
     };
 
-## 6) 4Sum
+## 6) 4Sum  
+    //需求
+    找出nums数组中的4个数相加等于target
+    //代码
     const fourSum = function(nums, target) {
       let result = [];
       let length = nums.length;
