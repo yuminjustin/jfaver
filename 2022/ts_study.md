@@ -6,5 +6,9 @@
                 自定义key: 类型;
              }
            }
+##### 方式二：在入口（例如：src目录）新建index.d.ts
+          interface Window {
+               自定义key: 类型;
+          }
            
           
