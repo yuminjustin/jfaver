@@ -7,14 +7,4 @@
              }
            }
            
-##### 方式二：tsconfig.json设置
-          "typeRoots": [
-            "./typings"   // 指定目录
-          ]
-          
-           //typings目录下index.ts
-           interface Window {
-               自定义key: 类型;
-           }
-
           
