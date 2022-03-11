@@ -36,15 +36,8 @@ export default function useCountdown(
   timeRemaining: number, /* 毫秒 */
   onComplete: Function
 ) {
-  //const cancelToken = useRef<boolean>(false);
   const timer = useRef<any>();
   const [countDownTime, setCountDownTime] = useState(0);
-//   useEffect(
-//     () => () => {
-//       cancelToken.current = true;
-//     },
-//     []
-//   );
 
   useEffect(() => {
     count(timeRemaining);
@@ -56,7 +49,6 @@ export default function useCountdown(
 
   const count = (remainTs) => {
     if (timer.current) window.clearTimeout(timer.current);
-    //if (cancelToken.current) return;
     if (remainTs <= 0 && Number(timeRemaining) > 0) {
       window.clearTimeout(timer.current);
       onComplete();
