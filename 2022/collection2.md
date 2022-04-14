@@ -1,4 +1,4 @@
-# GET / POST
+# GET / POST 经典八股
 GET在浏览器回退时是无害的，而POST会再次提交请求。<br>
 GET产生的URL地址可以被Bookmark，而POST不可以。<br>
 GET请求会被浏览器主动cache，而POST不会，除非手动设置。<br>
