@@ -285,3 +285,19 @@
             }
             return false
         }
+        
+##  12） 滚动是否可见
+
+    //method
+    isElementNotInViewport: (el) => {
+      if (el) {
+        let rect = el.getBoundingClientRect();
+        return (
+          rect.top >=
+            (window.innerHeight || document.documentElement.clientHeight) ||
+          rect.bottom <= 0
+        );
+      }
+    }
+    //配合scroll 事件
+    window.addEventListener('scroll', isElementNotInViewport(被监控的dom))
