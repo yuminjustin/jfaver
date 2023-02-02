@@ -44,3 +44,20 @@
       app.quit();
       // 直接退出
     }
+
+####  2.概念
+主进程：ipcMain <br/>
+       
+    ipcMain.on('eventName',Listener)  //绑定事件
+    ipcMain.once('eventName',Listener)  //绑定事件 只监听一次
+    ipcMain.removeListener('eventName',Listener)  //解绑事件
+
+
+渲染进程：ipcRenderer
+
+    ipcRenderer.on('eventName',Listener)  //绑定事件
+    ipcRenderer.once('eventName',Listener)  //绑定事件 只监听一次
+    ipcRenderer.removeListener('eventName',Listener)  //解绑事件
+    ipcRenderer.send('eventName',...args) // 向主进程发消息
+    ipcRenderer.sendTo(id,'eventName',...args) // 向渲染进程发消息  id为渲染进程id
+
