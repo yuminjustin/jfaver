@@ -45,7 +45,9 @@
       // 直接退出
     }
 
-####  2.概念
+####  2.进程之间交互
+> eventName: 自定义名称
+
 主进程：ipcMain <br/>
        
     ipcMain.on('eventName',Listener)  //绑定事件
@@ -60,4 +62,7 @@
     ipcRenderer.removeListener('eventName',Listener)  //解绑事件
     ipcRenderer.send('eventName',...args) // 向主进程发消息
     ipcRenderer.sendTo(id,'eventName',...args) // 向渲染进程发消息  id为渲染进程id
+    // 通过 contents.getProcessId() 获取id
+
+> 文章：https://segmentfault.com/a/1190000021843332?sort=newest
 
