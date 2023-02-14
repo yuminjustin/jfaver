@@ -65,5 +65,15 @@
     fs.writeFileSync(distPath, resultText2, "utf8");
     console.timeEnd("转换耗时");
 
+> 3、ts name类型
 
+    type Types = "R&B" | "Blues" | "HipHop";
+    interface Music<T = string> {
+      type: T;
+      name: string;
+    }
+    let song1: Music<Types> = {
+      type: 'R&B',  //只能选择Types的值
+      name: 'Nervous'
+    }
    
