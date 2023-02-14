@@ -1,4 +1,6 @@
 
+原文: https://juejin.cn/post/7193917621069152311
+
 >实现Readonly，接收一个泛型参数，并返回一个完全一样的类型，只是所有属性都会被readonly所修饰。
 
     type MyReadonly<T> = {
