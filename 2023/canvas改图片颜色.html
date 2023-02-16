@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>canvas改图片颜色</title>
+    <script>
+        let c;
+        let ctx;
+        let image;
+        let src = '1.png';
+        let color = [100, 100, 200];
+        let imageChange = true;
+        let imageData;
+        let isWeb = false;
+        let model = '1';
+        window.onload = () => {
+            c = document.getElementById('c');
+            ctx = c.getContext('2d');
+            draw();
+
+        }
+        function draw() {
+            if (imageChange) {
+                image = new Image();
+                if (isWeb) {
+                    image.src = src + '?v=' + Math.random();
+                }
+                image.src = src;
+                image.crossOrigin = "*";
+
+                image.onload = () => {
+
+                    dataFun();
+                    imageChange = false;
+
+                }
+            } else {
+                dataFun();
+                imageChange = false;
+            }
+
+        }
+        function dataFun() {
+            ctx.clearRect(0, 0, c.width, c.height);
+            ctx.drawImage(image, 0, 0);
+            imageData = ctx.getImageData(0, 0, image.width, image.height);
+            switch (model) {
+                case '1':
+                    for (let i = 0; len = imageData.data.length, i < len; i += 4) {
+                        imageData.data[i] = color[0];
+                        imageData.data[i + 1] = color[1];
+                        imageData.data[i + 2] = color[2];
+                    }
+                    break;
+                case '2':
+                    for (let i = 0; len = imageData.data.length, i < len; i += 4) {
+                        imageData.data[i + 3] = getGray(imageData.data[i], imageData.data[i + 1], imageData.data[i + 2]);
+                        imageData.data[i] = color[0];
+                        imageData.data[i + 1] = color[1];
+                        imageData.data[i + 2] = color[2];
+
+                    }
+                    break;
+                case '3':
+                    for (let i = 0; len = imageData.data.length, i < len; i += 4) {
+                        imageData.data[i + 3] = getGray2(imageData.data[i], imageData.data[i + 1], imageData.data[i + 2]);
+                        imageData.data[i] = color[0];
+                        imageData.data[i + 1] = color[1];
+                        imageData.data[i + 2] = color[2];
+
+                    }
+                    break;
+            }
+
+            console.log(imageData)
+            ctx.clearRect(0, 0, c.width, c.height);
+            ctx.putImageData(imageData, 0, 0);
+        }
+        // 灰度转换
+        function getGray(R, G, B) {
+
+            return 256 - (R * 299 + G * 587 + B * 114 + 500) / 1000;
+
+        }
+        // 灰度转换
+        function getGray2(R, G, B) {
+            /*
+                  return   (R+G+B)/3;
+                  //灰度计算公式*/
+            return (R * 299 + G * 587 + B * 114 + 500) / 1000;
+        }
+        function SrcIn(e) {
+            isWeb = true;
+            src = e.target.value;
+            imageChange = true;
+            draw();
+
+        }
+        function fileIn(e) {
+            let file = e.target.files[0];
+            isWeb = false;
+            src = URL.createObjectURL(file);
+            imageChange = true;
+            draw();
+        }
+
+        function setColor(e) {
+
+            color = JSON.parse(e.target.value);
+            imageChange = false;
+            draw();
+        }
+        function selectChange(e) {
+            console.log(e);
+            let i = e.target.selectedIndex;
+            model = e.target.options[i].value;
+            imageChange = false;
+            draw();
+        }
+    </script>
+</head>
+
+<body>
+    <canvas width="2000" height="1000" id="c" style="border:1px solid black;"></canvas>
+    <input type="file" accept="image/*" onchange="fileIn(event)" />
+    <span>图片网址：</span>
+    <input onchange="SrcIn(event)" />
+    <span>颜色数组[红色，绿色，蓝色]：</span>
+    <input onchange="setColor(event)" />
+    <span>模式：</span>
+    <select onchange="selectChange(event)">
+        <option value="1">透明底</option>
+        <option value="2">白底黑字</option>
+        <option value="3">黑底白字</option>
+    </select>
+</body>
+
+</html>
