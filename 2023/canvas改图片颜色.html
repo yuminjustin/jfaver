@@ -134,6 +134,63 @@
         <option value="2">白底黑字</option>
         <option value="3">黑底白字</option>
     </select>
+    <script>
+        // 简单封装
+         const imgColorCover = async (path, color,type,name) => {
+            let canvas = document.createElement("canvas");
+            let ctx = canvas.getContext('2d');
+            let image = new Image();
+            type = type || 'png';
+            name = name || new Date().getTime();
+            const dataURLtoBlob = (dataurl) => {
+                let arr = dataurl.split(',');
+                //注意base64的最后面中括号和引号是不转译的   
+                let _arr = arr[1].substring(0, arr[1].length - 2);
+                let mime = arr[0].match(/:(.*?);/)[1],
+                    bstr = atob(_arr),
+                    n = bstr.length,
+                    u8arr = new Uint8Array(n);
+                while (n--) {
+                    u8arr[n] = bstr.charCodeAt(n);
+                }
+                return new Blob([u8arr], {
+                    type: mime
+                });
+            }
+            const setColor = () => {
+                let imageData = ctx.getImageData(0, 0, image.width, image.height);
+                for (let i = 0; len = imageData.data.length, i < len; i += 4) {
+                    imageData.data[i] = color[0];
+                    imageData.data[i + 1] = color[1];
+                    imageData.data[i + 2] = color[2];
+                }
+                ctx.clearRect(0, 0, image.width, image.height);
+                ctx.putImageData(imageData, 0, 0);
+            }
+            return new Promise((resolve, reject) => {
+                image.onload = () => {
+                    canvas.width = image.width;
+                    canvas.height = image.height;
+                    ctx.drawImage(image, 0, 0);
+                    setColor();
+                    let base64 = canvas.toDataURL(`image/${type}`, 1);
+                    let blob = dataURLtoBlob(base64);
+                    let file = new File([blob], `${name}.${type}`, { type: `image/${type}` })
+                    resolve({ base64, blob, file })
+                }
+                image.src = path;
+            })
+
+        }
+        // 调用
+        imgColorCover('1.png', [100, 100, 200]).then(re => {
+            console.log(re);
+
+            let i = document.createElement('img');
+            document.body.appendChild(i);
+            i.src = URL.createObjectURL(re.file);
+        })
+    </script>
 </body>
 
 </html>
