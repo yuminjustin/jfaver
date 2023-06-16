@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Level 4</title>
+    <style>
+        div:is(.isPink, .isPretty) {
+            color: pink;
+        }
+
+        div:where([class^="bold"]) {
+            font-weight: bold;
+        }
+
+        div:has(p) {
+            background-color: purple !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="isPink">
+        <p>
+            Pink
+        </p>
+    </div>
+
+    <div class="bold_text isPretty">
+        <p>
+            Pretty
+        </p>
+    </div>
+
+    <div>
+        <span>
+            Not Pretty
+        </span>
+    </div>
+</body>
+
+</html>
